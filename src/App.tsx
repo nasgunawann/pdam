@@ -4,7 +4,7 @@ import FormPermohonan from "./components/FormPermohonan";
 import RiwayatPermohonan from "./components/RiwayatPermohonan";
 import { PdamApplication, ApplicationStatus, RequestType } from "./types";
 import { INITIAL_APPLICATIONS } from "./data";
-import { ClipboardCheck, Sparkles, Smartphone, Monitor, ChevronRight, Check } from "lucide-react";
+import { ClipboardCheck, Sparkles, ChevronRight, Check } from "lucide-react";
 
 type ViewState = "DASHBOARD" | "FORM" | "HISTORY";
 
@@ -12,27 +12,6 @@ export default function App() {
   const [currentView, setCurrentView] = useState<ViewState>("DASHBOARD");
   const [applications, setApplications] = useState<PdamApplication[]>([]);
   const [recentSubmittedId, setRecentSubmittedId] = useState<string | null>(null);
-  const [deviceFrame, setDeviceFrame] = useState(true);
-
-  // Dynamic system clock state for the smartphone mock status bar
-  const [systemTime, setSystemTime] = useState("");
-
-  useEffect(() => {
-    // Update simple clock
-    const updateClock = () => {
-      const now = new Date();
-      setSystemTime(
-        now.toLocaleTimeString("id-ID", {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        })
-      );
-    };
-    updateClock();
-    const interval = setInterval(updateClock, 30000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Hydrate from localStorage on component mount
   useEffect(() => {
@@ -110,77 +89,13 @@ export default function App() {
   const completedApp = applications.find((a) => a.id === recentSubmittedId);
 
   return (
-    <div id="pdam-app-root" className="min-h-screen bg-[#eceff2] flex flex-col items-center justify-center font-sans">
+    <div id="pdam-app-root" className="min-h-screen bg-white flex flex-col items-center justify-start font-sans">
       
-      {/* Desktop Helper & Meta Header */}
-      <div className="w-full max-w-4xl mx-auto px-4 pt-6 pb-2 escond-on-mobile hidden lg:flex items-center justify-between text-[#424752] border-b border-neutral-300/40 mb-4">
-        <div className="flex flex-col gap-0.5">
-          <div className="text-sm font-bold text-[#003f87] uppercase tracking-wider flex items-center gap-1">
-            <Sparkles className="w-4 h-4 text-amber-500 fill-amber-500" />
-            <span>AI Studio Customer Hub Preview</span>
-          </div>
-          <h2 className="text-[11px] text-neutral-500 font-medium font-mono">
-            Development Mode &bull; Tel: 1500-112 &bull; PDAM Digital Unit
-          </h2>
-        </div>
-
-        {/* View switcher frame toggle */}
-        <div className="flex items-center gap-2 bg-white/85 p-1 rounded-lg border border-neutral-200">
-          <button
-            type="button"
-            onClick={() => setDeviceFrame(true)}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
-              deviceFrame 
-                ? "bg-[#003f87] text-white shadow-sm" 
-                : "text-neutral-600 hover:bg-neutral-100"
-            }`}
-          >
-            <Smartphone className="w-3.5 h-3.5" />
-            <span>Android View</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setDeviceFrame(false)}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
-              !deviceFrame 
-                ? "bg-[#003f87] text-white shadow-sm" 
-                : "text-neutral-600 hover:bg-neutral-100"
-            }`}
-          >
-            <Monitor className="w-3.5 h-3.5" />
-            <span>Full Layout</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Main Core Shell wrapper: simulates real device or fills full layout */}
+      {/* Main Core Shell wrapper: displays only the mobile webapp content */}
       <div 
         id="app-viewport-wrapper"
-        className={`w-full transition-all duration-300 ${
-          deviceFrame 
-            ? "max-w-[420px] h-[880px] rounded-[38px] border-[12px] border-[#1e293b] shadow-2xl overflow-hidden bg-white flex flex-col relative" 
-            : "max-w-md md:max-w-xl mx-auto min-h-screen bg-white shadow-lg flex flex-col"
-        }`}
+        className="w-full max-w-md mx-auto min-h-screen bg-white flex flex-col"
       >
-        {/* Device Status Bar if container frame is simulated */}
-        {deviceFrame && (
-          <div id="device-status-bar" className="bg-[#003f87] h-10 px-6 shrink-0 flex items-center justify-between text-white text-xs select-none border-b border-white/5 font-medium z-10">
-            <span className="font-semibold tracking-tight">{systemTime || "07:07"}</span>
-            {/* Notch Speaker representation */}
-            <div className="w-16 h-4 bg-[#1e293b] rounded-b-xl absolute top-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
-              <div className="w-8 h-1 bg-neutral-600 rounded-full"></div>
-            </div>
-            {/* Right indicators */}
-            <div className="flex items-center gap-1.5">
-              <span className="text-[10px] font-bold text-teal-300 tracking-wide font-mono bg-teal-950/20 px-1.5 py-0.5 rounded border border-teal-500/10">4G LTE</span>
-              {/* Battery indicator */}
-              <div className="w-5 h-2.5 bg-neutral-200/20 rounded-xs p-[1px] flex border border-white/40">
-                <div className="h-full bg-white w-4 rounded-xs"></div>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Inner Content Scaffolding with tab routing */}
         <div className="flex-1 flex flex-col overflow-hidden relative">
           
