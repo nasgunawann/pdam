@@ -33,7 +33,7 @@ export default function Dashboard({
         <div id="droplet-card" className="bg-white rounded-[24px] p-8 border border-neutral-200/80 shadow-md/5 flex items-center justify-center w-56 h-56 mt-4 mb-9 transition-transform duration-300 hover:scale-[1.02]">
           <div className="relative flex items-center justify-center w-full h-full">
             <img 
-              src="/public/tirta.png" 
+              src="/tirta.png" 
               alt="Logo PDAM" 
               className="w-full h-full object-cover rounded-full"
             />
