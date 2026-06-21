@@ -1,0 +1,6 @@
+{
+  "name": "Layanan PDAM Mobile",
+  "description": "Aplikasi Layanan Pelanggan PDAM Mobile untuk mengajukan permohonan administrasi secara mudah, cepat, dan transparan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
