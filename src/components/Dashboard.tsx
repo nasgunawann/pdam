@@ -31,25 +31,12 @@ export default function Dashboard({
       <main className="flex-1 px-6 py-8 flex flex-col items-center max-w-md mx-auto w-full">
         {/* Droplet Card Wrapper */}
         <div id="droplet-card" className="bg-white rounded-[24px] p-8 border border-neutral-200/80 shadow-md/5 flex items-center justify-center w-56 h-56 mt-4 mb-9 transition-transform duration-300 hover:scale-[1.02]">
-          <div className="relative flex items-center justify-center">
-            {/* Custom SVG Dual-Tone Teardrop matches mockup */}
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 100 130" 
-              className="w-28 h-36 drop-shadow-md"
-            >
-              {/* Outer rich blue */}
-              <path 
-                d="M50,10 C50,10 90,56 90,85 C90,107 72,125 50,125 C28,125 10,107 10,85 C10,56 50,10 50,10 Z" 
-                fill="#0056b3" 
-              />
-              {/* Inner sky blue/cyan highlight */}
-              <path 
-                d="M50,23 C50,23 78,63 78,85 C78,100 65,113 50,113 C35,113 22,100 22,85 C22,63 50,23 50,23 Z" 
-                fill="#4ea3ff" 
-                opacity="0.85"
-              />
-            </svg>
+          <div className="relative flex items-center justify-center w-full h-full">
+            <img 
+              src="/public/tirta.png" 
+              alt="Logo PDAM" 
+              className="w-full h-full object-cover rounded-full"
+            />
           </div>
         </div>
 
